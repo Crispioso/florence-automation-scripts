@@ -1,0 +1,21 @@
+'feathertest'
+ft.set('iterations', 2);
+ft.set('currentIteration', 0);
+ft.set('sectionsCount', $('#section .edit-section__sortable-item').size());
+ft.set('currentIteration', ft.get('currentIteration')+1);
+$('#section .edit-section__head').click();
+$('#add-section').click();
+1000
+$('#section .btn-markdown-edit:last').click();
+1000
+$('#wmd-input').val("Test markdown "+ft.get('currentIteration'));
+document.getElementById('wmd-input').dispatchEvent(new Event('input'));
+$('.btn-markdown-editor-exit').click();
+1000
+$('#section .edit-section__sortable-item:last textarea:first').html("Test section "+ft.get('currentIteration'));
+$('#section .edit-section__sortable-item:last textarea:first')[0].dispatchEvent(new Event('input'));
+$('.btn-edit-save').click();
+1000
+ft.isTrue(ft.get('sectionsCount') === (ft.get('iterations') + ft.get('currentIteration')), true);
+ft.step(4, ft.get('currentIteration') < ft.get('iterations'));
+ft.stop()
